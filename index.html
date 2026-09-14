@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novacrest Kft. — Szolgáltatások</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#1a56db;--dark:#0f172a}
+*{font-family:'Inter',sans-serif}
+body{background:#f8fafc}
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);color:#fff;padding:80px 0 60px}
+.hero h1{font-weight:800;font-size:2.8rem}
+.hero p{font-size:1.2rem;opacity:.9}
+.section-title{font-weight:700;color:var(--dark);margin-bottom:40px}
+.product-card{border:none;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);transition:transform .2s;overflow:hidden;background:#fff}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.product-card img{width:100%;height:200px;object-fit:cover}
+.product-card .card-body{padding:24px}
+.product-card h5{font-weight:700;color:var(--dark)}
+.product-card .price{font-size:1.5rem;font-weight:800;color:var(--primary)}
+.category-badge{background:#dbeafe;color:#1e40af;border:none;font-weight:600}
+footer{background:var(--dark);color:#94a3b8;padding:40px 0;margin-top:60px}
+footer a{color:#94a3b8;text-decoration:none}
+footer a:hover{color:#fff}
+.navbar{background:rgba(15,23,42,.95);backdrop-filter:blur(10px)}
+.navbar a{color:#fff!important}
+.btn-primary{background:var(--primary);border:none;font-weight:600;padding:12px 32px;border-radius:8px}
+.btn-primary:hover{background:#1e40af}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg sticky-top">
+<div class="container">
+<a class="navbar-brand fw-bold" href="./">🚀 Novacrest Kft.</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="nav">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="./">Főoldal</a></li>
+<li class="nav-item"><a class="nav-link" href="#szolgaltatasok">Szolgáltatások</a></li>
+<li class="nav-item"><a class="nav-link" href="aszf.html">ÁSZF</a></li>
+<li class="nav-item"><a class="nav-link" href="feltetelek.html">Felhasználási feltételek</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container text-center">
+<h1>Novacrest Kft.</h1>
+<p class="lead">Megbízható szolgáltatások vállalkozásoknak és magánszemélyeknek</p>
+<a href="#szolgaltatasok" class="btn btn-light btn-lg mt-3 fw-semibold">Szolgáltatások megtekintése →</a>
+</div>
+</section>
+
+<section class="py-5">
+<div class="container">
+<h2 class="section-title text-center" id="szolgaltatasok">Szolgáltatások</h2>
+<div class="row g-4" id="products"></div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<div class="row">
+<div class="col-md-6">
+<h5 class="text-white mb-3">Novacrest Kft.</h5>
+<p>Megbízható szolgáltatások, profi csapat, korrekt árak.</p>
+</div>
+<div class="col-md-3">
+<h6 class="text-white mb-3">Linkek</h6>
+<ul class="list-unstyled">
+<li><a href="./">Főoldal</a></li>
+<li><a href="aszf.html">ÁSZF</a></li>
+<li><a href="feltetelek.html">Felhasználási feltételek</a></li>
+</ul>
+</div>
+<div class="col-md-3">
+<h6 class="text-white mb-3">Elérhetőség</h6>
+<p>info@novacrest.hu<br>+36 1 234 5678</p>
+</div>
+</div>
+<hr class="my-4" style="border-color:#334155">
+<p class="text-center mb-0">© 2026 Novacrest Kft. — Minden jog fenntartva.</p>
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const products=[];
+
+function loadProducts(){
+const container=document.getElementById("products");
+if(products.length===0){
+container.innerHTML='<div class="col-12 text-center text-muted py-5"><p>A szolgáltatások feltöltése folyamatban van. Látogasson vissza hamarosan!</p></div>';
+return;
+}
+container.innerHTML=products.map(p=>`
+<div class="col-md-4">
+<div class="product-card">
+<img src="${p.image_url||'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600'}" alt="${p.name}">
+<div class="card-body">
+<span class="badge category-badge mb-2">${p.category==='product'?'Termék':'Szolgáltatás'}</span>
+<h5>${p.name}</h5>
+<p class="text-muted">${p.description||''}</p>
+<div class="d-flex justify-content-between align-items-center mt-3">
+<span class="price">${p.price.toLocaleString('hu-HU')} Ft</span>
+<button class="btn btn-primary btn-sm" onclick="alert('Az online fizetés hamarosan elérhető lesz.')">Hamarosan</button>
+</div>
+</div>
+</div>
+</div>`).join("");
+}
+
+loadProducts();
+</script>
+</body>
+</html>
